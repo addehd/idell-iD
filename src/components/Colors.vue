@@ -1,0 +1,98 @@
+<template>
+  <div class="test">
+    <section id="colors">
+      <div v-for="(color, index) in colors" :key="index">
+        <div class="color" :style="color.style"><div class="removeColor" @click="colorInfo(index)">x</div>{{ color.name }}</div>
+      </div>
+    </section>
+    <input type="color" @change="pipet($event);" :value="newColor">
+    <button @click="addColor">Add color</button>
+  </div>
+</template>
+
+<script>
+import { db, auth } from '../main.js';
+
+export default {
+  data() {
+    return {
+      newColor: '#e66465',
+      colors: []
+    }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    colorInfo: function(index){
+      this.colors.splice(index, 1);
+    },
+    addColor: function(){
+      let color = { name: this.newColor, style: `background:${this.newColor}`}
+      this.colors.push(color)
+      this.setData()
+    },
+    pipet: function(e){
+     this.newColor = e.target.value
+    },
+    getData: function(){
+      let docRef = db.collection("users").doc(auth.currentUser.uid)
+      let vm = this
+      docRef.get().then(function(doc) {
+        if (doc.exists) {
+            vm.colors = doc.data().colors
+        } else {
+            console.log("No such document!")
+        }
+      }).catch(function(error) {
+          console.log("Error getting document:", error)
+      })
+    },
+    setData: function(){
+      db.collection("users").doc(auth.currentUser.uid).set({
+        colors: this.colors,
+        companyName: "idell",
+        values: "flow tech"
+      })
+      .then(function() {
+        console.log("Document successfully written!");
+      })
+      .catch(function(error) {
+        console.error("Error writing document: ", error);
+      })
+    }
+  }
+}
+</script>
+
+<style scoped>
+#colors {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.color {
+  height: 100px;
+  width: 200px;
+  margin: 0.5rem; 
+  color: white;
+  position: relative; }
+
+.removeColor {
+  position: absolute;
+  left: 6px;
+  top: 0; }
+
+input[type="color"] {
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+  height: 3rem;
+  background: none;
+  border: none;
+}
+button {
+    height: 3rem;;
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div >
-      <p>Upload an image to Firebase:</p>
+      <p>Upload an img to Firebase:</p>
       <input type="file" @change="previewImage" accept="image/*" >
     </div>
     <div>
@@ -18,8 +18,6 @@
 <!-- https://cloudconvert.com/svg-to-eps -->
 <script>
 import firebase from 'firebase'
-//import {db, auth} from '../main.js'
-
 
 export default {
   //name: 'Upload',
@@ -35,6 +33,7 @@ export default {
       this.uploadValue=0
       this.picture=null
       this.imageData = event.target.files[0]
+      console.log( this.imageData )
     },
     onUpload(){
       this.picture=null
@@ -44,7 +43,7 @@ export default {
       }, error=>{console.log(error.message)},
       ()=>{this.uploadValue=100
         storageRef.snapshot.ref.getDownloadURL().then((url)=>{
-          this.picture =url
+          this.picture = url
         })
       }
       )

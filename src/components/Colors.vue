@@ -2,7 +2,7 @@
   <div class="test">
     <section id="colors">
       <div v-for="(color, index) in colors" :key="index">
-        <div class="color" :style="color.style"><div class="removeColor" @click="colorInfo(index)">x</div>{{ color.name }}</div>
+        <div class="color" :style="color.style"><div class="removeColor" @click="removeColor(index)">x</div>{{ color.name }}</div>
       </div>
     </section>
     <input type="color" @change="pipet($event);" :value="newColor">
@@ -24,8 +24,9 @@ export default {
     this.getData()
   },
   methods: {
-    colorInfo: function(index){
-      this.colors.splice(index, 1);
+    removeColor: function(index){
+      this.colors.splice(index, 1)
+      this.setData()
     },
     addColor: function(){
       let color = { name: this.newColor, style: `background:${this.newColor}`}

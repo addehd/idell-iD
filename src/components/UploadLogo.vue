@@ -7,10 +7,12 @@
     <div>
       <p>Progress: {{uploadValue.toFixed()+"%"}}
       <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
+      <button @click="emitUrl"></button>
     </div>
     <div v-if="imageData!=null">
-        <img class="preview" :src="picture">
-        <br>
+      <img class="preview" :src="picture">
+     
+      <br>
       <button @click="onUpload">Upload</button>
     </div>
   </div>
@@ -29,6 +31,9 @@ export default {
     }
   },
   methods:{
+    emitUrl(){
+      this.$emit('emitUrl')
+    },
     previewImage(event) {
       this.uploadValue=0
       this.picture=null

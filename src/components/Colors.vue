@@ -38,10 +38,10 @@ export default {
     },
     getData: function(){
       let docRef = db.collection("users").doc(auth.currentUser.uid)
-      let vm = this
-      docRef.get().then(function(doc) {
+
+      docRef.get().then((doc) => {
         if (doc.exists) {
-            vm.colors = doc.data().colors
+            this.colors = doc.data().colors
         } else {
             console.log("No such document!")
         }

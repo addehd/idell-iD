@@ -7,12 +7,13 @@
 </template>
 
 <script>
-import Colors from '../components/Colors.vue'
 import UploadLogo from '../components/UploadLogo.vue'
+import Colors from '../components/Colors.vue'
 
 export default {
   data() {
     return {
+      imgUrl: ''
     }
   }, 
   components: {

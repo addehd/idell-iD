@@ -1,62 +1,83 @@
 <template>
   <div>
-    <div >
-      <p>Upload an img to Firebase:</p>
-      <input type="file" @change="previewImage" accept="image/*" >
-    </div>
     <div>
-      <p>Progress: {{uploadValue.toFixed()+"%"}}
-      <progress id="progress" :value="uploadValue" max="100" ></progress>  </p>
-      <button @click="emitUrl"></button>
+      <img class="company-logo" :src="imgSrc">
     </div>
-    <div v-if="imageData!=null">
-      <img class="preview" :src="picture">
-     
-      <br>
-      <button @click="onUpload">Upload</button>
+    <div class="upload-logo">
+      <input type="file" @change="onUpload" accept="image/*" >
+      Progress: {{uploadValue.toFixed()+"%"}}
+      <progress id="progress" :value="uploadValue" max="100" ></progress>
     </div>
   </div>
 </template>
-<!-- https://cloudconvert.com/svg-to-eps -->
+
 <script>
 import firebase from 'firebase'
+import { db, auth } from '../main.js';
 
 export default {
-  //name: 'Upload',
   data(){
     return{
         imageData: null,
-        picture: null,
+        imgSrc: null,
+        previewImg: null,
         uploadValue: 0
     }
   },
+  mounted() {
+    this.getData()
+  },
   methods:{
-    emitUrl(){
-      this.$emit('emitUrl')
-    },
-    previewImage(event) {
-      this.uploadValue=0
-      this.picture=null
+    onUpload(event){
+      this.uploadValue = 0
       this.imageData = event.target.files[0]
-      console.log( this.imageData )
-    },
-    onUpload(){
-      this.picture=null
-      const storageRef=firebase.storage().ref(`${this.imageData.name}`).put(this.imageData)
+      if(typeof this.imageData.name === "undefined"){
+        return
+      }
+      const storageRef = firebase.storage().ref(`${this.imageData.name}`).put(this.imageData)
+      console.log(storageRef)
       storageRef.on(`state_changed`,snapshot=>{
         this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100
       }, error=>{console.log(error.message)},
-      ()=>{this.uploadValue=100
-        storageRef.snapshot.ref.getDownloadURL().then((url)=>{
-          this.picture = url
+      ()=>{this.uploadValue = 100
+        storageRef.snapshot.ref.getDownloadURL().then((url) => {
+          this.imgSrc = url
+          this.setData()
         })
-      }
-      )
+      })
+    },
+    getData: function(){
+      let docRef = db.collection("users").doc(auth.currentUser.uid)
+      docRef.get().then((doc) => {
+        if (doc.exists) {
+          console.log(doc.data().imgSrc,"img")
+          this.imgSrc = doc.data().imgSrc
+        } else {
+            console.log("No such document!")
+        }
+      }).catch(function(error) {
+          console.log("Error getting document:", error)
+      })
+    },
+    setData: function(){
+      db.collection("users").doc(auth.currentUser.uid).update({
+        imgSrc: this.imgSrc,
+      })
+      .then(function() {
+        console.log("Document successfully written!")
+      })
+      .catch(function(error) {
+        console.error("Error writing document: ", error)
+      })
     }
   }
 }
 </script>
 
 <style scoped>
+.preview {
+  max-width: 4rem; }
 
+.upload-logo{
+  margin: 3rem; }
 </style>

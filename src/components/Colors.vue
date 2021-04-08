@@ -1,5 +1,5 @@
 <template>
-  <div class="test">
+  <div>
     <section id="colors">
       <div v-for="(color, index) in colors" :key="index">
         <div class="color" :style="color.style"><div class="removeColor" @click="removeColor(index)">x</div>{{ color.name }}</div>
@@ -38,7 +38,6 @@ export default {
     },
     getData: function(){
       let docRef = db.collection("users").doc(auth.currentUser.uid)
-
       docRef.get().then((doc) => {
         if (doc.exists) {
             this.colors = doc.data().colors

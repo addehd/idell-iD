@@ -34,8 +34,7 @@ export default {
       if(typeof this.imageData.name === "undefined"){
         return
       }
-      const storageRef = firebase.storage().ref(`${this.imageData.name}`).put(this.imageData)
-      console.log(storageRef)
+      const storageRef = firebase.storage().ref(auth.currentUser.uid + '-' + Date.now().toString(16) + '-' + this.imageData.name).put(this.imageData)
       storageRef.on(`state_changed`,snapshot=>{
         this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100
       }, error=>{console.log(error.message)},
@@ -50,7 +49,6 @@ export default {
       let docRef = db.collection("users").doc(auth.currentUser.uid)
       docRef.get().then((doc) => {
         if (doc.exists) {
-          console.log(doc.data().imgSrc,"img")
           this.imgSrc = doc.data().imgSrc
         } else {
             console.log("No such document!")

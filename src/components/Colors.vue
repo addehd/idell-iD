@@ -39,7 +39,7 @@ export default {
     getData: function(){
       let docRef = db.collection("users").doc(auth.currentUser.uid)
       docRef.get().then((doc) => {
-        if (doc.exists) {
+        if (doc.exists && typeof doc.data().colors !== "undefined") {
             this.colors = doc.data().colors
         } else {
             console.log("No such document!")
@@ -53,7 +53,7 @@ export default {
         colors: this.colors,
         companyName: "idell",
         values: "flow tech"
-      })
+      }, { merge: true })
       .then(function() {
         console.log("Document successfully written!");
       })

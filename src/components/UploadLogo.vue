@@ -58,9 +58,9 @@ export default {
       })
     },
     setData: function(){
-      db.collection("users").doc(auth.currentUser.uid).update({
+      db.collection("users").doc(auth.currentUser.uid).set({
         imgSrc: this.imgSrc,
-      })
+      }, { merge: true })
       .then(function() {
         console.log("Document successfully written!")
       })

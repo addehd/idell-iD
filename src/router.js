@@ -6,6 +6,7 @@ import Home from '@/views/Home';
 import GraphicId from '@/views/GraphicId';
 import Login from '@/views/Login';
 import SignUp from '@/views/SignUp';
+import Identity from '@/views/Identity';
 
 Vue.use(Router);
 
@@ -41,6 +42,14 @@ const router = new Router({
       path: '/graphic-id',
       name: 'graphic-id',
       component: GraphicId,
+      meta: {
+          requiresAuth: true
+      }
+    },
+    {
+      path: '/identity',
+      name: 'Identity',
+      component: Identity,
       meta: {
           requiresAuth: true
       }

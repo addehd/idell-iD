@@ -3,7 +3,8 @@
     <img alt="Vue logo" src="./assets/logo.svg">
     <nav>
       <a href="/#/hem">Hem</a>
-      <a href="/#/graphic-id">idell-iD</a>
+      <a href="/#/identity">Identitet</a>
+      <a href="/#/graphic-id">Grafisk iD</a>
     </nav>
     <router-view/>
   </div>

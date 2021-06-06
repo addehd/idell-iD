@@ -1,7 +1,11 @@
 <template>
   <div>
-    <div>
-      <img class="company-logo" :src="imgSrc">
+    <div class="company-logo">
+      <img class="company-three" :src="imgSrc">
+      <img class="company-two" :src="imgSrc">
+      <img class="company-one" :src="imgSrc">
+      
+      
     </div>
     <div class="upload-logo">
       <input type="file" @change="onUpload" accept="image/*" >
@@ -73,9 +77,30 @@ export default {
 </script>
 
 <style scoped>
+
+.company-logo {
+  width: 60rem;
+  grid:10% }
+
+.company-one {
+  width: 8%;
+  padding: 2%;
+  background: rgb(239, 239, 239); }
+
+.company-two {
+  width: 28%;
+  padding: 3%;
+  background: rgb(239, 239, 239); }
+
+.company-three {
+  width: 48%;
+  padding: 2%;
+  background: rgb(239, 239, 239); }
+  
 .preview {
   max-width: 4rem; }
 
 .upload-logo{
   margin: 3rem; }
-</style>
+
+</style>  

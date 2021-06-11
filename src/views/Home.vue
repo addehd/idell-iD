@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Welcome msg="idell iD"/>
-    <button @click="logout">Logout</button>
+    <button class="button" @click="logout">Logout</button>
   </div>
 </template>
 

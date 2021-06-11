@@ -1,11 +1,14 @@
 <template>
   <section>
+
+    <h1>Asking the real questions</h1>
+    <p>Briefly put, questions are more important than answers because questions seek and frame and expose while answers, at their best, are temporary responses whose accuracy changes and shift and decays over time, needing to be reformed and remade and reevaluated as the world itself changes. Many times the questions are more important than the answear to understand who we are and where we are going.</p>
     <div v-for="(question, index) in questions" :key="index">
       <h1>{{question.heading}}</h1>
       <textarea v-if="question.editMode"  v-model="question.paragraph" placeholder="Just do it">
       </textarea>
-      <p v-if="!question.editMode">{{question.paragraph}}</p>
-      <button  @click="addQuestion($event, index)">Save/edit</button>
+      <p @click="test(index)" v-if="!question.editMode">{{question.paragraph}}</p>
+      <button  @click="addQuestion($event, index)" v-if="question.editMode">Save/edit</button>
     </div>
   </section>
 </template>
@@ -77,6 +80,10 @@ export default {
     this.getData()
   },
   methods: {
+    test(i){
+      console.log(i,"test");
+      this.questions[i].editMode = true
+    },
     addQuestion(e, i) {
       if(this.questions[i].editMode === true) {
         this.questions[i].editMode = false }

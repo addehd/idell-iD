@@ -5,8 +5,10 @@
         <div class="color" :style="color.style"><div class="removeColor" @click="removeColor(index)">x</div>{{ color.name }}</div>
       </div>
     </section>
-    <input type="color" @change="pipet($event);" :value="newColor">
-    <button @click="addColor">Add color</button>
+    <div class="edit-colors">
+      <input type="color" @change="pipet($event);" :value="newColor">
+      <button @click="addColor">Add color</button>
+    </div>
   </div>
 </template>
 
@@ -72,6 +74,13 @@ export default {
   justify-content: center;
   flex-wrap: wrap; }
 
+.edit-colors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+
 .color {
   height: 100px;
   width: 200px;
@@ -88,7 +97,8 @@ input[type="color"] {
   padding: 0;
   margin: 0;
   border-width: 0;
-  height: 3rem;
+  height: 3.4rem;
+  width: 3.4rem;
   background: none;
   border: none;
 }

@@ -1,6 +1,10 @@
 <template>
   <div class="hello">
-    <h1>?</h1>
+    <h1>How can idell-iD help entrepreneurs?</h1>
+    <p>Briefly put, questions are more important than answers because questions seek and frame and expose while answers, at their best, are temporary responses whose accuracy changes and shift and decays over time, needing to be reformed and remade and reevaluated as the world itself changes.
+      Many times the questions are more important than the answear to understand who we are and where we are going. <br>    
+    </p>
+        <h1>How can idell-iD help designers?</h1>
     <p>Briefly put, questions are more important than answers because questions seek and frame and expose while answers, at their best, are temporary responses whose accuracy changes and shift and decays over time, needing to be reformed and remade and reevaluated as the world itself changes.
       Many times the questions are more important than the answear to understand who we are and where we are going. <br>    
     </p>

@@ -4,8 +4,6 @@
       <img class="company-three" :src="imgSrc">
       <img class="company-two" :src="imgSrc">
       <img class="company-one" :src="imgSrc">
-      
-      
     </div>
     <div class="upload-logo">
       <input type="file" @change="onUpload" accept="image/*" >
@@ -80,22 +78,20 @@ export default {
 
 .company-logo {
   width: 60rem;
+  display: flex;
   grid:10% }
 
 .company-one {
   width: 8%;
-  padding: 2%;
-  background: rgb(239, 239, 239); }
+  padding: 3%; }
 
 .company-two {
   width: 28%;
-  padding: 3%;
-  background: rgb(239, 239, 239); }
+  padding: 4%; }
 
 .company-three {
   width: 48%;
-  padding: 2%;
-  background: rgb(239, 239, 239); }
+  padding: 3%; }
   
 .preview {
   max-width: 4rem; }

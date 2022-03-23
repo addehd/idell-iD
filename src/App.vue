@@ -1,11 +1,14 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.svg">
-    <nav>
-      <a href="/#/hem">Hem</a>
-      <a href="/#/identity">Identitet</a>
-      <a href="/#/graphic-id">Grafisk iD</a>
-    </nav>
+    <section class="header">
+      <img alt="Vue logo" src="./assets/logo.svg">
+      <nav>
+        <a href="/#/hem">Hem</a>
+        <a href="/#/identity">Identitet</a>
+        <a href="/#/graphic-id">Grafisk iD</a>
+         <a href="/#/graphic-id">Strategi</a>
+      </nav>
+    </section>
     <router-view/>
   </div>
 </template>
@@ -20,13 +23,24 @@
   max-width: 1100px;
   margin: auto; }
 
+section.header {
+    background: #eeeedd;
+    padding: 1rem; 
+    margin-bottom: 4rem; }
+    
 nav {
   padding: 2rem; }
 
 nav a {
   font-weight: bold;
   color: #2c3e50;
-  padding: 1rem; }
+  padding: 1rem;
+  font-weight: 400;
+  text-decoration: none; }
+
+nav a:hover {
+  text-decoration: underline;
+}
 
 .button {
 	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);

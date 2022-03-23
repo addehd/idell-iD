@@ -105,4 +105,4 @@ input[type="color"] {
 button {
     height: 3rem;;
 }
-</style>
+</style

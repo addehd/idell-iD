@@ -4,6 +4,7 @@
     <UploadLogo/>
     <Colors/>
     <Socialmedia/>
+    <UploadImages/>
   </section>
 </template>
 
@@ -11,6 +12,7 @@
 import UploadLogo from '../components/UploadLogo.vue'
 import Colors from '../components/Colors.vue'
 import Socialmedia from '../components/Socialmedia.vue'
+import UploadImages from '../components/UploadImages.vue'
 
 export default {
   data() {
@@ -21,7 +23,8 @@ export default {
   components: {
     Colors,
     UploadLogo,
-    Socialmedia
+    Socialmedia,
+    UploadImages
   }
 }
 </script>

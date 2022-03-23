@@ -12,6 +12,11 @@
         <img class="img-responsive" src="@/assets/insta.jpg" alt="">
         <img class="img-responsive" src="@/assets/insta.jpg" alt="">
       </div>
+      <div class="insta">
+        <img class="img-responsive" src="@/assets/insta.jpg" alt="">
+        <img class="img-responsive" src="@/assets/insta.jpg" alt="">
+        <img class="img-responsive" src="@/assets/insta.jpg" alt="">
+      </div>
     </article>
   </section>
 </template>
@@ -28,11 +33,9 @@ export default {
   },
   mounted() {
     this.getData()
-    console.log("dd");
   },
   methods:{
     onUpload(){
-      console.log("f");
     },
     getData: function(){
     },

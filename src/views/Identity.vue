@@ -17,6 +17,16 @@
 
 import { db, auth } from '../main.js';
 
+/*
+Todo at http://localhost:8080/#/identity
+  questionOnClick
+    question.style
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: white;
+*/
+
 export default {
   data() {
     return {
